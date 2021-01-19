@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"time"
 
 	tb "gopkg.in/tucnak/telebot.v2"
@@ -27,6 +28,7 @@ func (tg *Telegram) SendMessage(msg string, to int64, markdown bool) error {
 	opt := &tb.SendOptions{}
 	if markdown {
 		opt.ParseMode = tb.ModeMarkdown
+		msg = fmt.Sprintf("```%s```", msg)
 	}
 
 	_, err := tg.bot.Send(tb.ChatID(to), msg, opt)
