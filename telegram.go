@@ -28,7 +28,7 @@ func (tg *Telegram) SendMessage(msg string, to int64, markdown bool) error {
 	opt := &tb.SendOptions{}
 	if markdown {
 		opt.ParseMode = tb.ModeMarkdown
-		msg = fmt.Sprintf("```%s```", msg)
+		msg = fmt.Sprintf("```\n%s\n```", msg)
 	}
 
 	_, err := tg.bot.Send(tb.ChatID(to), msg, opt)
